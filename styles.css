@@ -1,0 +1,30 @@
+p {
+    font-size: larger;
+}
+
+main {
+    display: grid;
+    place-items: center;
+    gap: 50px;
+}
+
+.location-display {
+    width: 50%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+}
+
+.current-weather {
+    width: 70%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    place-items: center;
+}
+
+.air-quality {
+    width: 200px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+}
