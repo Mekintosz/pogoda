@@ -51,30 +51,31 @@ const airQualityDisplay = document.querySelector(".air-quality");
 const currentDisplay = document.querySelector(".current-weather");
 form.addEventListener("submit", handleSubmit);
 
+
+
 async function handleSubmit(e) {
   e.preventDefault();
   const inputValue = document.querySelector("#location-input").value;
-  const bigData = await provideWeatherData(inputValue);
-
-  console.log(inputValue);
-  console.table(bigData);
-  displayLocation(bigData, locationDisplay);
-  displayCurrent(bigData.current);
-  displayData(bigData.air_quality, airQualityDisplay);
-  console.log(allPs);
+  const bigData = await provideWeatherData(inputValue?inputValue:'honolulu');
+  displayAll(bigData)
+  document.querySelector("#location-input").value = ''
+  
 }
 
 function displayData(data, container) {
   container.innerHTML = "";
-  for (const [key, value] of Object.entries(data)) {
+  for (let i of Object.entries(data).flat()) {
     let info = document.createElement("p");
-    info.innerText = `${key}:   ${value}`;
+    info.innerText = i;
     container.appendChild(info);
   }
 }
 
-const allPs = document.querySelectorAll("p");
-console.log(allPs);
+function displayAll(bigData) {
+  displayLocation(bigData, locationDisplay);
+  displayCurrent(bigData.current);
+  displayData(bigData.air_quality, airQualityDisplay);
+}
 
 function displayLocation(data) {
   const location = document.getElementById("location");
@@ -88,11 +89,14 @@ function displayLocation(data) {
 }
 
 function displayCurrent(data) {
+  const feelsLike = document.getElementById("feelsLike");
+  feelsLike.innerText = `Fells like ${data.feelslike_c}°C`
   const tempC = document.getElementById("tempC");
   tempC.innerText = `${data.temp_c}°C`;
   const condition = document.getElementById("condition");
   condition.innerText = data.condition.text;
   const graphicContainer = document.getElementById("graphic");
+  graphicContainer.innerHTML = ''
   const graphicNode = loadGraphicNode(data)
   graphicContainer.appendChild(graphicNode)
   const wind = document.getElementById('wind')

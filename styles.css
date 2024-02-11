@@ -20,6 +20,22 @@ header {
     margin: 2rem 0;
 }
 
+input {
+    width: 250px;
+    padding: 4px 12px;
+    margin: 12px 0;
+    box-sizing: border-box;
+    border: 1px solid rgb(98, 98, 98);
+    border-radius: 20px;
+    background-color: #f4faff;
+    
+  
+}
+
+input:focus {
+    border: 2px solid #595959;
+}
+
 main {
     display: grid;
     place-items: center;
@@ -27,28 +43,34 @@ main {
 }
 
 .location-display {
-    width: 50%;
+    width: 45%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.6rem;
-    border: 2px solid navy;
 }
 
+.location-name {
+    text-align: center;
+} 
+
 .coordinates {
-    display: grid;
-    grid-template-columns: 2fr 1fr 2fr 1fr;
+    display: flex;
     place-items: center;
-    gap: 2rem;
+    
+    gap: 1rem;
 }
 
 .label {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     display: flex;
+    place-items: center;
+    color: rgb(101, 101, 101);
+    
 }
 
-div.latitude div.longitude {
-    font-size: 2rem;
+.latitude, .longitude {
+    font-size: 1.1rem;
 }
 
 .current-weather {
@@ -56,7 +78,6 @@ div.latitude div.longitude {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     place-items: center;
-    border: 2px solid navy;
 }
 
 .condition-container {
@@ -66,30 +87,45 @@ div.latitude div.longitude {
 }
 
 .current-graphic {
-    height: 130px;
-    width: 130px;
+    height: 100px;
+    width: 100px;
 }
 
 .wind-graphic {
-    height: 80px;
-    width: 80px;
+    height: 90px;
+    width: 90px;
 }
 
 .wind-blow {
     font-size: 1.2rem;
 }
 
-.current-weather :nth-child(1) {
+.temp {
     font-size: 70px;
+}
 
+.temp-container {
+    text-align: center;
 }
 
 .air-quality {
-    width: 30%;
+    /* width: 20%; */
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    place-items: center;
+    grid-template-columns: 1fr 1fr ;
+    column-gap: 1.6rem;
+   
+    
 }
+
+.air-quality p:nth-child(2n+1) {
+    text-align: end;
+}
+
+
+.air-quality p:nth-child(2n) {
+    text-align: start;
+}
+
 
 /* -------------------slider----------------- */
 .switch {

@@ -28,27 +28,38 @@
             <div class="coordinates">
                     <div class="latitude-label label">
                         Latitude: 
+                        <div class="latitude" id="latitude"></div>
                     </div>
-                    <div class="latitude" id="latitude"></div>
-                    <div class="longitude-label label">Longitude: 
                     
+                    <div class="longitude-label label">
+                        Longitude: 
+                        <div class="longitude" id="longitude"></div> 
                     </div>
-                    <div class="longitude" id="longitude"></div> 
+                    
             </div>
         </div>
         <div class="current-weather">
-            <div id="tempC"></div>
             <div class="condition-container">
                 <div id="graphic" class="current-graphic"></div>
                 <div id="condition" class="condition"></div>
             </div>
+            <div class="temp-container">
+                <div id="tempC" class="temp"></div>
+                <div id="feelsLike" class="feels-like"></div>
+            </div>
+            
             <div class="wind-container">
                 <img class="wind-graphic" src="./assets/windsock.svg" alt="wind sock">
                 <div id="wind" class="wind-blow"></div>
             </div>
         </div>
-        <h2 class="pollution-heading">Air pollution expressed in µg/m³</h2>
         <div class="air-quality"></div>
+        <div class="prefix">
+           
+
+        </div>
+        <p>µg/m³</p>
+        
     </main>
     
     </div>
