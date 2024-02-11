@@ -14,11 +14,40 @@
             <input type="text" id="location-input">
             <button class="submit-btn">search</button>
         </form>
-        <div class="controls"></div>
+        <div class="controls">
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider"></span>
+              </label>
+        </div>
     </header>
     <main>
-        <div class="location-display"></div>
-        <div class="current-weather"></div>
+        <div class="location-display">
+            <h1 class="location-name" id="location"></h1>
+            <h3 class="country" id="country"></h3>
+            <div class="coordinates">
+                    <div class="latitude-label label">
+                        Latitude: 
+                    </div>
+                    <div class="latitude" id="latitude"></div>
+                    <div class="longitude-label label">Longitude: 
+                    
+                    </div>
+                    <div class="longitude" id="longitude"></div> 
+            </div>
+        </div>
+        <div class="current-weather">
+            <div id="tempC"></div>
+            <div class="condition-container">
+                <div id="graphic" class="current-graphic"></div>
+                <div id="condition" class="condition"></div>
+            </div>
+            <div class="wind-container">
+                <img class="wind-graphic" src="./assets/windsock.svg" alt="wind sock">
+                <div id="wind" class="wind-blow"></div>
+            </div>
+        </div>
+        <h2 class="pollution-heading">Air pollution expressed in µg/m³</h2>
         <div class="air-quality"></div>
     </main>
     

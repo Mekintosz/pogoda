@@ -1,5 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;800&display=swap');
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
 p {
     font-size: larger;
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-weight: 400;
+}
+
+header {
+    display: flex;
+    justify-content: space-around;
+    margin: 2rem 0;
 }
 
 main {
@@ -10,9 +28,27 @@ main {
 
 .location-display {
     width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    border: 2px solid navy;
+}
+
+.coordinates {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 2fr 1fr 2fr 1fr;
     place-items: center;
+    gap: 2rem;
+}
+
+.label {
+    font-size: 0.8rem;
+    display: flex;
+}
+
+div.latitude div.longitude {
+    font-size: 2rem;
 }
 
 .current-weather {
@@ -20,11 +56,97 @@ main {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     place-items: center;
+    border: 2px solid navy;
+}
+
+.condition-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.current-graphic {
+    height: 130px;
+    width: 130px;
+}
+
+.wind-graphic {
+    height: 80px;
+    width: 80px;
+}
+
+.wind-blow {
+    font-size: 1.2rem;
+}
+
+.current-weather :nth-child(1) {
+    font-size: 70px;
+
 }
 
 .air-quality {
-    width: 200px;
+    width: 30%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     place-items: center;
 }
+
+/* -------------------slider----------------- */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 25px;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 19px;
+    width: 19px;
+    left: 5px;
+    bottom: 3px;
+    border-radius: 50%;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(22px);
+    -ms-transform: translateX(22px);
+    transform: translateX(22px);
+  }
+  
+ 
+/* -------------------slider-end----------------- */
+
