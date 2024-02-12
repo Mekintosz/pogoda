@@ -28,8 +28,6 @@ input {
     border: 1px solid rgb(98, 98, 98);
     border-radius: 20px;
     background-color: #f4faff;
-    
-  
 }
 
 input:focus {
@@ -87,8 +85,8 @@ main {
 }
 
 .current-graphic {
-    height: 100px;
-    width: 100px;
+    height: 90px;
+    width: 90px;
 }
 
 .wind-graphic {
@@ -97,15 +95,22 @@ main {
 }
 
 .wind-blow {
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 .temp {
-    font-size: 70px;
+    font-size: 75px;
 }
 
 .temp-container {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.feels-like {
+    margin: auto 0 0 0;
 }
 
 .air-quality {
@@ -113,19 +118,16 @@ main {
     display: grid;
     grid-template-columns: 1fr 1fr ;
     column-gap: 1.6rem;
-   
-    
+    row-gap: 0.3rem;
 }
 
 .air-quality p:nth-child(2n+1) {
     text-align: end;
 }
 
-
 .air-quality p:nth-child(2n) {
     text-align: start;
 }
-
 
 /* -------------------slider----------------- */
 .switch {

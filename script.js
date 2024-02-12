@@ -53,13 +53,14 @@ form.addEventListener("submit", handleSubmit);
 
 
 
+let bigData
+
 async function handleSubmit(e) {
   e.preventDefault();
   const inputValue = document.querySelector("#location-input").value;
-  const bigData = await provideWeatherData(inputValue?inputValue:'honolulu');
+  bigData = await provideWeatherData(inputValue?inputValue:'honolulu');
   displayAll(bigData)
   document.querySelector("#location-input").value = ''
-  
 }
 
 function displayData(data, container) {
@@ -77,6 +78,15 @@ function displayAll(bigData) {
   displayData(bigData.air_quality, airQualityDisplay);
 }
 
+const unitsType = document.getElementById('units')
+unitsType.addEventListener('change', () => displayCurrent(bigData.current, getUnits()))
+
+function getUnits() {
+  const unitsType = document.getElementById('units')
+  const units = unitsType.checked ? 'c' : 'f'
+  return units
+}
+
 function displayLocation(data) {
   const location = document.getElementById("location");
   const country = document.getElementById("country");
@@ -88,9 +98,10 @@ function displayLocation(data) {
   longitude.innerText = `${data.location.lon}°`;
 }
 
-function displayCurrent(data) {
+function displayCurrent(data, units='c') {
   const feelsLike = document.getElementById("feelsLike");
-  feelsLike.innerText = `Fells like ${data.feelslike_c}°C`
+  feelsLike.innerText = units === 'c' ? `Fells like ${data.feelslike_c}°C`
+  : `Fells like ${data.feelslike_f}°F`
   const tempC = document.getElementById("tempC");
   tempC.innerText = `${data.temp_c}°C`;
   const condition = document.getElementById("condition");
