@@ -9,20 +9,29 @@
 </head>
 <body>
     <header>
-        <div class="logo"></div>
-        <form action="#">
-            <input type="text" id="location-input">
-            <button class="submit-btn">>>>>>></button>
-        </form>
+        <div class="logo-group">
+            <img class="logo-graphic" src="./assets/raindrop.svg" alt="raindrop">
+        <div>
+            <div class="logo">Pogoda </div>
+            <!-- <div class="powered-by">Powered by <a href="https://www.weatherapi.com/" title="Free Weather API">WeatherAPI.com</a></div> -->
+        </div>
+        </div>
+        
+        
         <div class="controls">
-            <input type="checkbox" id="units" checked>
+            <div class="unit"><img src="./assets/fahrenheit.svg" alt="fahrenheit"></div>
             <label class="switch">
-                <input type="checkbox">
+                <input type="checkbox" id="units" checked>
                 <span class="slider"></span>
               </label>
+              <div class="unit"><img src="./assets/celsius.svg" alt="celsius"></div>
         </div>
     </header>
     <main>
+        <form action="#" class="search-block">
+            <input type="text" id="location-input">
+            <button class="submit-btn">Search</button>
+        </form>
         <div class="location-display">
             <h1 class="location-name" id="location"></h1>
             <h3 class="country" id="country"></h3>
@@ -52,10 +61,14 @@
                 <div id="wind" class="wind-blow"></div>
             </div>
         </div>
-        <div class="air-quality"></div>
-        <div class="prefix">
+        <div class="air-quality-container">
+            <div class="air-quality"></div>
+            <p class="prefix">µg/m³</p>
+        </div>
         </div>
     </main>
-    <footer></footer>
+    <footer>
+        <p class="coder">Code by Mekintosz</p> 
+        <p class="powered">Powered by <a href="https://www.weatherapi.com/" title="Free Weather API">WeatherAPI.com</a></p>
 </body>
 </html>

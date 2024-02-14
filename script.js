@@ -29,7 +29,6 @@ function convertData(data) {
   return {
     location: { name, country, lat, lon },
     air_quality: { co, no2, o3, so2, pm25: pm2_5, pm10 },
-
     current: {
       temp_c,
       feelslike_c,
@@ -45,46 +44,47 @@ function convertData(data) {
 
 const form = document.querySelector("form");
 const submitBtn = document.querySelector(".submit-btn");
-
 const locationDisplay = document.querySelector(".location-display");
 const airQualityDisplay = document.querySelector(".air-quality");
 const currentDisplay = document.querySelector(".current-weather");
+const unitsType = document.getElementById("units");
+
 form.addEventListener("submit", handleSubmit);
+unitsType.addEventListener("change", () => {
+if (bigData)
+  displayCurrent(bigData.current, getUnits())
+}
+);
 
-
-
-let bigData
+let bigData = null;
 
 async function handleSubmit(e) {
   e.preventDefault();
   const inputValue = document.querySelector("#location-input").value;
-  bigData = await provideWeatherData(inputValue?inputValue:'honolulu');
-  displayAll(bigData)
-  document.querySelector("#location-input").value = ''
+  bigData = await provideWeatherData(inputValue ? inputValue : "honolulu");
+  if (bigData) displayAll(bigData);
+  document.querySelector("#location-input").value = "";
+}
+
+function getUnits() {
+  const unitsType = document.getElementById("units");
+  const units = unitsType.checked ? "c" : "f";
+  return units;
+}
+
+function displayAll(bigData) {
+  displayLocation(bigData, locationDisplay);
+  displayCurrent(bigData.current, getUnits());
+  displayData(bigData.air_quality, airQualityDisplay);
 }
 
 function displayData(data, container) {
   container.innerHTML = "";
   for (let i of Object.entries(data).flat()) {
     let info = document.createElement("p");
-    info.innerText = i;
+    isNaN(i) ? (info.innerText = i) : (info.innerText = Math.round(i));
     container.appendChild(info);
   }
-}
-
-function displayAll(bigData) {
-  displayLocation(bigData, locationDisplay);
-  displayCurrent(bigData.current);
-  displayData(bigData.air_quality, airQualityDisplay);
-}
-
-const unitsType = document.getElementById('units')
-unitsType.addEventListener('change', () => displayCurrent(bigData.current, getUnits()))
-
-function getUnits() {
-  const unitsType = document.getElementById('units')
-  const units = unitsType.checked ? 'c' : 'f'
-  return units
 }
 
 function displayLocation(data) {
@@ -98,48 +98,61 @@ function displayLocation(data) {
   longitude.innerText = `${data.location.lon}°`;
 }
 
-function displayCurrent(data, units='c') {
-  const feelsLike = document.getElementById("feelsLike");
-  feelsLike.innerText = units === 'c' ? `Fells like ${data.feelslike_c}°C`
-  : `Fells like ${data.feelslike_f}°F`
+function displayCurrent(data, units) {
   const tempC = document.getElementById("tempC");
-  tempC.innerText = `${data.temp_c}°C`;
+  const feelsLike = document.getElementById("feelsLike");
   const condition = document.getElementById("condition");
-  condition.innerText = data.condition.text;
   const graphicContainer = document.getElementById("graphic");
-  graphicContainer.innerHTML = ''
-  const graphicNode = loadGraphicNode(data)
-  graphicContainer.appendChild(graphicNode)
-  const wind = document.getElementById('wind')
-  wind.innerText = `${data.wind_kph} km/h`
-}
+  const wind = document.getElementById("wind");
+  const graphicNode = loadGraphicNode(data);
 
-function loadGraphicNode(data) {
-  let graphic = document.createElement("img");
-  let code = data.condition.code;
-  if (code == 1000) {
-    graphic.src = "./assets/01d.svg";
-  } else if (code == 1003) {
-    graphic.src = "./assets/02d.svg";
-  } else if (code == 1006 || code == 1009) {
-    graphic.src = "./assets/03d.svg";
-  } else if (code == 1030 || code == 1135) {
-    graphic.src = "./assets/50d.svg";
-  } else if (
-    code == 1063 ||
-    code == 1150 ||
-    code == 1153 ||
-    code == 1168 ||
-    code == 1171 ||
-    code == 1180 ||
-    code == 1183 ||
-    code == 1189 ||
-    code == 1192 ||
-    code == 1192
-  ) {
-    graphic.src = "./assets/09d.svg";
-  } else if (code == 1186) {
-    graphic.src = "./assets/10d.svg";
+  feelsLike.innerText =
+    units === "c"
+      ? `Fells like ${Math.round(data.feelslike_c)}°C`
+      : `Fells like ${Math.round(data.feelslike_f)}°F`;
+
+  tempC.innerText =
+    units === "c"
+      ? `${Math.round(data.temp_c)}°`
+      : `${Math.round(data.temp_f)}°`;
+
+  condition.innerText = data.condition.text;
+
+  graphicContainer.innerHTML = "";
+
+  graphicContainer.appendChild(graphicNode);
+  wind.innerText =
+    units === "c"
+      ? `${Math.round(data.wind_kph)} km/h`
+      : `${Math.round(data.wind_mph)} m/h`;
+
+  function loadGraphicNode(data) {
+    let graphic = document.createElement("img");
+    let code = data?.condition?.code;
+    if (code == 1000) {
+      graphic.src = "./assets/01d.svg";
+    } else if (code == 1003) {
+      graphic.src = "./assets/02d.svg";
+    } else if (code == 1006 || code == 1009) {
+      graphic.src = "./assets/03d.svg";
+    } else if (code == 1030 || code == 1135) {
+      graphic.src = "./assets/50d.svg";
+    } else if (
+      code == 1063 ||
+      code == 1150 ||
+      code == 1153 ||
+      code == 1168 ||
+      code == 1171 ||
+      code == 1180 ||
+      code == 1183 ||
+      code == 1189 ||
+      code == 1192 ||
+      code == 1192
+    ) {
+      graphic.src = "./assets/09d.svg";
+    } else if (code == 1186) {
+      graphic.src = "./assets/10d.svg";
+    }
+    return graphic;
   }
-  return graphic;
 }
