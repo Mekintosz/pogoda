@@ -4,6 +4,9 @@ body {
     padding: 0;
     margin: 0;
     font-family: 'Plus Jakarta Sans', sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 p {
@@ -19,10 +22,10 @@ h1, h2, h3, h4, h5, h6 {
 header {
     display: flex;
     max-width: 1200px;
+    width: 100%;
     padding: 1rem 0;
     margin: 0 auto;
     justify-content: space-between;
-    /* margin: 1rem 0.2rem; */
 }
 
 .controls {
@@ -190,6 +193,23 @@ main {
     text-align: end;
 }
 
+.index {
+    display:flex;
+    gap: 0.2rem;
+}
+
+.green {
+    background-color: #DFFFE2;
+}
+
+.orange {
+    background-color: #FFF2D9;
+}
+
+.red {
+    background-color: #FFD9D9;
+}
+
 /* -------------------slider----------------- */
 .switch {
     position: relative;
@@ -256,6 +276,7 @@ footer {
     align-items: center;
     font-size: 0.8rem;
     padding: 2.2rem;
+    margin-top:auto;
 }
 .powered {
     font-size: 0.6rem;
