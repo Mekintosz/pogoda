@@ -11,7 +11,7 @@ function applyIndexColor(i, element) {
 }
 
 function createGraphicNode(data) {
-  let graphic = document.createElement("img");
+  let graphicNode = document.createElement("img");
   let code = data.condition.code;
   if (code == 1000) {
     graphic.src = "../src/assets/01d.svg";

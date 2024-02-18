@@ -1,5 +1,6 @@
 import { applyIndexColor, createGraphicNode } from './sideFunctions.js'
 
+
 function displayData(data, container) {
   container.innerHTML = "";
   for (let i of Object.entries(data).flat()) {
