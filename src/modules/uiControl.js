@@ -10,12 +10,13 @@ function displayData(data, container) {
     container.appendChild(info);
   }
 }
-
+    
 function displayLocation(data) {
   const location = document.getElementById("location");
   const country = document.getElementById("country");
   const latitude = document.getElementById("latitude");
   const longitude = document.getElementById("longitude");
+
   location.innerText = data.location.name;
   country.innerText = data.location.country;
   latitude.innerText = `${data.location.lat}°`;
@@ -34,21 +35,23 @@ function displayCurrent(data, units) {
     units === "c"
       ? `Fells like ${Math.round(data.feelslike_c)}°C`
       : `Fells like ${Math.round(data.feelslike_f)}°F`;
-
   tempC.innerText =
     units === "c"
       ? `${Math.round(data.temp_c)}°`
       : `${Math.round(data.temp_f)}°`;
-
   condition.innerText = data.condition.text;
-
   graphicContainer.innerHTML = "";
-
   graphicContainer.appendChild(graphicNode);
   wind.innerText =
     units === "c"
       ? `${Math.round(data.wind_kph)} km/h`
       : `${Math.round(data.wind_mph)} m/h`;
 }
+
+// function displayHourlyWeather() {
+//   const hourly = document.getElementById('hourly')
+
+//   data.
+// }
 
 export { displayCurrent, displayLocation, displayData }

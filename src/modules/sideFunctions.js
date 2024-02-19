@@ -1,3 +1,10 @@
+import img1 from "../assets/01d.svg"
+import img2 from "../assets/02d.svg"
+import img3 from "../assets/03d.svg"
+import img4 from "../assets/50d.svg"
+import img5 from "../assets/09d.svg"
+import img6 from "../assets/10d.svg"
+
 function getUnits() {
   const unitsToggle = document.getElementById("units");
   let units = unitsToggle.checked ? "c" : "f";
@@ -14,13 +21,13 @@ function createGraphicNode(data) {
   let graphicNode = document.createElement("img");
   let code = data.condition.code;
   if (code == 1000) {
-    graphic.src = "../src/assets/01d.svg";
+    graphicNode.src = img1;
   } else if (code == 1003) {
-    graphic.src = "../src/assets/02d.svg";
+    graphicNode.src = img2;
   } else if (code == 1006 || code == 1009) {
-    graphic.src = "../src/assets/03d.svg";
+    graphicNode.src = img3;
   } else if (code == 1030 || code == 1135) {
-    graphic.src = "../src/assets/50d.svg";
+    graphicNode.src = img4;
   } else if (
     code == 1063 ||
     code == 1150 ||
@@ -33,9 +40,9 @@ function createGraphicNode(data) {
     code == 1192 ||
     code == 1192
   ) {
-    graphic.src = "../src/assets/09d.svg";
+    graphicNode.src = img5;
   } else if (code == 1186) {
-    graphic.src = "./src/assets/10d.svg";
+    graphicNode.src = img6;
   }
   return graphicNode;
 }
