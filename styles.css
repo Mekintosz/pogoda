@@ -158,7 +158,7 @@ main {
 }
 
 .temp {
-    font-size: 75px;
+    font-size: 6.5rem;
 }
 
 .temp-container {
@@ -169,6 +169,20 @@ main {
 
 .feels-like {
     margin: auto 0 0 0;
+}
+
+.hourly-weather {
+    display: flex;
+    gap: 0.3rem;
+}
+
+.by-hour {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 0.6rem;
+    padding: 0.1rem;
 }
 
 .air-quality-container {

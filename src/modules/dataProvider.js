@@ -1,5 +1,5 @@
 export default async function provideWeatherData(location = "Wroclaw") {
-  const apiCall = `http://api.weatherapi.com/v1/forecast.json?key=ad519565f97d430fb67163741240602&q=London&days=1&aqi=yes&alerts=yes`;
+  const apiCall = `http://api.weatherapi.com/v1/forecast.json?key=ad519565f97d430fb67163741240602&q=${location}&days=1&aqi=yes&alerts=yes`;
   try {
     const response = await fetch(apiCall, { mode: "cors" });
     if (!response.ok) throw new Error(`Location ${location} not found`);
@@ -53,7 +53,7 @@ function convertData(data) {
 const hourly = organizeHourlyWeather(data)
   
 
-  return { location, currentWeather, astro, hourly}
+  return { location, currentWeather, airQuality, astro, hourly}
 
   function organizeHourlyWeather(data) {
     let hourlyData = data.forecast.forecastday[0].hour

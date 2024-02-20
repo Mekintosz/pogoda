@@ -17,10 +17,10 @@ function displayLocation(data) {
   const latitude = document.getElementById("latitude");
   const longitude = document.getElementById("longitude");
 
-  location.innerText = data.location.name;
-  country.innerText = data.location.country;
-  latitude.innerText = `${data.location.lat}°`;
-  longitude.innerText = `${data.location.lon}°`;
+  location.innerText = data.name;
+  country.innerText = data.country;
+  latitude.innerText = `${data.lat}°`;
+  longitude.innerText = `${data.lon}°`;
 }
 
 function displayCurrent(data, units) {
@@ -48,10 +48,22 @@ function displayCurrent(data, units) {
       : `${Math.round(data.wind_mph)} m/h`;
 }
 
-// function displayHourlyWeather() {
-//   const hourly = document.getElementById('hourly')
+function displayHourlyWeather(data) {
+  const hourly = document.getElementById('hourly')
+  hourly.innerHTML = ''
 
-//   data.
-// }
+  data.forEach(element => {
+    let hourlyDisplay = document.createElement('div')
+    hourlyDisplay.classList.add('by-hour')
+    let hour = document.createElement('span')
+    let temp = document.createElement('span')
+    let cor = document.createElement('span')
+    hour.innerText = `${element.hourlyNewTime}`
+    temp.innerText = `${element.temp_c}`
+    cor.innerText = `${element.chance_of_rain}`
+    hourlyDisplay.append(temp, cor, hour)
+    hourly.appendChild(hourlyDisplay)
+  });
+}
 
-export { displayCurrent, displayLocation, displayData }
+export { displayCurrent, displayLocation, displayData, displayHourlyWeather }

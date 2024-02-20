@@ -3,6 +3,7 @@ import {
   displayCurrent,
   displayLocation,
   displayData,
+  displayHourlyWeather
 } from "./modules/uiControl.js";
 import provideWeatherData from "./modules/dataProvider.js";
 
@@ -11,14 +12,15 @@ const form = document.querySelector("form");
 const unitsToggle = document.getElementById("units");
 form.addEventListener("submit", handleSubmit);
 unitsToggle.addEventListener("change", () => {
-  if (weatherData) displayCurrent(weatherData.current, getUnits());
+  if (weatherData) displayCurrent(weatherData.currentWeather, getUnits());
 });
 
 function displayAll() {
   const airQualityDisplay = document.querySelector(".air-quality");
-  displayLocation(weatherData);
-  displayCurrent(weatherData.current, getUnits());
-  displayData(weatherData.air_quality, airQualityDisplay);
+  displayLocation(weatherData.location);
+  displayCurrent(weatherData.currentWeather, getUnits());
+  displayData(weatherData.airQuality, airQualityDisplay);
+  displayHourlyWeather(weatherData.hourly)
 }
 
 async function handleSubmit(e) {
