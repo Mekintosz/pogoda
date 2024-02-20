@@ -1,16 +1,15 @@
-import { applyIndexColor, createGraphicNode } from './sideFunctions.js'
-
+import { applyIndexColor, createGraphicNode } from "./sideFunctions.js";
 
 function displayData(data, container) {
   container.innerHTML = "";
   for (let i of Object.entries(data).flat()) {
     let info = document.createElement("p");
-    isNaN(i) ? info.innerText = i : info.innerText = Math.round(i);
-    if (!isNaN(i)) applyIndexColor(i, info)
+    isNaN(i) ? (info.innerText = i) : (info.innerText = Math.round(i));
+    if (!isNaN(i)) applyIndexColor(i, info);
     container.appendChild(info);
   }
 }
-    
+
 function displayLocation(data) {
   const location = document.getElementById("location");
   const country = document.getElementById("country");
@@ -24,7 +23,7 @@ function displayLocation(data) {
 }
 
 function displayCurrent(data, units) {
-  const tempC = document.getElementById("tempC");
+  const temp = document.getElementById("tempC");
   const feelsLike = document.getElementById("feelsLike");
   const condition = document.getElementById("condition");
   const graphicContainer = document.getElementById("graphic");
@@ -35,7 +34,7 @@ function displayCurrent(data, units) {
     units === "c"
       ? `Fells like ${Math.round(data.feelslike_c)}°C`
       : `Fells like ${Math.round(data.feelslike_f)}°F`;
-  tempC.innerText =
+  temp.innerText =
     units === "c"
       ? `${Math.round(data.temp_c)}°`
       : `${Math.round(data.temp_f)}°`;
@@ -48,22 +47,55 @@ function displayCurrent(data, units) {
       : `${Math.round(data.wind_mph)} m/h`;
 }
 
-function displayHourlyWeather(data) {
-  const hourly = document.getElementById('hourly')
-  hourly.innerHTML = ''
+function displayHourlyWeather(data, units) {
+  const hourly = document.getElementById("hourly");
+  hourly.innerHTML = "";
 
-  data.forEach(element => {
-    let hourlyDisplay = document.createElement('div')
-    hourlyDisplay.classList.add('by-hour')
-    let hour = document.createElement('span')
-    let temp = document.createElement('span')
-    let cor = document.createElement('span')
-    hour.innerText = `${element.hourlyNewTime}`
-    temp.innerText = `${element.temp_c}`
-    cor.innerText = `${element.chance_of_rain}`
-    hourlyDisplay.append(temp, cor, hour)
-    hourly.appendChild(hourlyDisplay)
-  });
+  const prevBtn = document.getElementById("prev-day");
+  const nextBtn = document.getElementById("next-day");
+
+  let firstDay = 0;
+  let lastDay = 6;
+
+  prevBtn.addEventListener("click", () => calculateShortDay());
+  nextBtn.addEventListener("click", () => calculateShortDay2());
+
+  function calculateShortDay() {
+    if (firstDay === 0) return;
+    firstDay -= 1;
+    lastDay -= 1;
+    hourly.innerHTML = "";
+    makeHourlyWeather();
+  }
+
+  function calculateShortDay2() {
+    if (lastDay === 24) return;
+    firstDay += 1;
+    lastDay += 1;
+    hourly.innerHTML = "";
+    makeHourlyWeather();
+  }
+
+  function makeHourlyWeather(units) {
+    let shortDay = data.slice(firstDay, lastDay);
+    shortDay.forEach((element) => {
+      const hourlyDisplay = document.createElement("div");
+      hourlyDisplay.classList.add("by-hour");
+      const hour = document.createElement("span");
+      const temp = document.createElement("span");
+      const cor = document.createElement("span");
+      const graphicNode = createGraphicNode(element);
+      hour.innerText = `${element.hourlyNewTime}`;
+      temp.innerText =
+        units === "c"
+          ? `${Math.round(element.temp_c)}°`
+          : `${Math.round(element.temp_f)}°`;
+      cor.innerText = `${element.chance_of_rain}`;
+      hourlyDisplay.append(temp, graphicNode, cor, hour);
+      hourly.appendChild(hourlyDisplay);
+    });
+  }
+  makeHourlyWeather();
 }
 
-export { displayCurrent, displayLocation, displayData, displayHourlyWeather }
+export { displayCurrent, displayLocation, displayData, displayHourlyWeather };

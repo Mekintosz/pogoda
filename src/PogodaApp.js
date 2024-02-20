@@ -20,7 +20,7 @@ function displayAll() {
   displayLocation(weatherData.location);
   displayCurrent(weatherData.currentWeather, getUnits());
   displayData(weatherData.airQuality, airQualityDisplay);
-  displayHourlyWeather(weatherData.hourly)
+  displayHourlyWeather(weatherData.hourly, getUnits())
 }
 
 async function handleSubmit(e) {

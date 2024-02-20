@@ -18,7 +18,6 @@ function applyIndexColor(i, element) {
 }
 
 function createGraphicNode(data) {
-  console.log(data)
   let graphicNode = document.createElement("img");
   let code = data.condition.code;
   if (code == 1000) {
