@@ -1,5 +1,6 @@
-export default async function provideWeatherData(location = "Wroclaw") {
-  const apiCall = `http://api.weatherapi.com/v1/forecast.json?key=ad519565f97d430fb67163741240602&q=${location}&days=1&aqi=yes&alerts=yes`;
+export default async function provideWeatherData(location) {
+  const apiCall = `http://api.weatherapi.com/v1/forecast.json?key=ad519565f97d430fb67163741240602&q=${location}&days=3&aqi=yes&alerts=yes`;
+
   try {
     const response = await fetch(apiCall, { mode: "cors" });
     if (!response.ok) throw new Error(`Location ${location} not found`);
@@ -54,8 +55,6 @@ function convertData(data) {
 
   const hourly = organizeHourlyWeather(data);
 
-  return { location, currentWeather, airQuality, astro, hourly };
-
   function organizeHourlyWeather(data) {
     let hourlyData = data.forecast.forecastday[0].hour;
     let hourly = [];
@@ -67,7 +66,9 @@ function convertData(data) {
         chance_of_rain,
         condition: { code },
       } = hourlyData[h];
+
       let hourlyNewTime = newTime(time);
+
       hourly.push({
         hourlyNewTime,
         temp_c,
@@ -81,6 +82,34 @@ function convertData(data) {
       let newTime = time.split(" ");
       return newTime[1];
     }
+
     return hourly;
   }
+
+  function organizeTwoDayWeather(data) {
+    
+    const twoDayData = [];
+    for (let d = 1; d < 3; d++) {
+      let nextDayData = data.forecast.forecastday[d].day;
+      const {
+        avgtemp_c,
+        avgtemp_f,
+        daily_chance_of_rain,
+        condition: { code },
+      } = nextDayData;
+
+      twoDayData.push({
+        avgtemp_c,
+        avgtemp_f,
+        daily_chance_of_rain,
+        condition: { text, code },
+      });
+    }
+    
+    return twoDayData
+  }
+
+  const twoDayData = organizeTwoDayWeather(data)
+
+  return { location, currentWeather, airQuality, astro, hourly, twoDayData };
 }

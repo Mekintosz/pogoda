@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,43 +8,40 @@
     <link rel="stylesheet" href="../styles.css">
     <script src="./bundle.js" defer></script>
 </head>
+
 <body>
     <header>
         <div class="logo-group">
             <img class="logo-graphic" src="../src//assets/raindrop.svg" alt="raindrop">
-        <div>
-            <div class="logo">Pogoda </div>
-            <!-- <div class="powered-by">Powered by <a href="https://www.weatherapi.com/" title="Free Weather API">WeatherAPI.com</a></div> -->
+            <div class="logo">Pogoda</div>
         </div>
-        </div>
-        
-        
+        <form action="#" class="search-block">
+            <input type="text" id="location-input">
+            <button class="submit-btn">Go &#127760</button>
+        </form>
+
         <div class="controls">
             <div class="unit"><img src="../src/assets/fahrenheit.svg" alt="fahrenheit"></div>
             <label class="switch">
                 <input type="checkbox" id="units" checked>
                 <span class="slider"></span>
-              </label>
-              <div class="unit"><img src="../src/assets/celsius.svg" alt="celsius"></div>
+            </label>
+            <div class="unit"><img src="../src/assets/celsius.svg" alt="celsius"></div>
         </div>
     </header>
     <main>
-        <form action="#" class="search-block">
-            <input type="text" id="location-input">
-            <button class="submit-btn">Search</button>
-        </form>
         <div class="location-display">
             <h1 class="location-name" id="location"></h1>
             <h3 class="country" id="country"></h3>
             <div class="coordinates">
-                    <div class="latitude-label label">
-                        Latitude: 
-                        <div class="latitude" id="latitude"></div>
-                    </div>
-                    <div class="longitude-label label">
-                        Longitude: 
-                        <div class="longitude" id="longitude"></div> 
-                    </div>
+                <div class="latitude-label label">
+                    Latitude:
+                    <div class="latitude" id="latitude"></div>
+                </div>
+                <div class="longitude-label label">
+                    Longitude:
+                    <div class="longitude" id="longitude"></div>
+                </div>
             </div>
         </div>
         <div class="current-weather">
@@ -55,18 +53,22 @@
                 <div id="tempC" class="temp"></div>
                 <div id="feelsLike" class="feels-like"></div>
             </div>
-            
+
             <div class="wind-container">
                 <img class="wind-graphic" src="../src/assets/windsock.svg" alt="wind sock">
                 <div id="wind" class="wind-blow"></div>
             </div>
         </div>
-        <div  >
-            <button id="prev-day">B</button>
+        <div class="hourly-container">
+            <button id="prev-day" class="left-btn">&#8701</button>
             <div class="hourly-weather short-day" id="hourly"></div>
-            <button id="next-day">F</button>
+            <button id="next-day" class="right-btn">&#8702</button>
         </div>
-        <div class="air-quality-container">
+        <h2>Next two days</h2>
+        <div class="two-day-weather-container" id="two_day">
+        </div>
+        
+        <div class="air-quality-container" >
             <div class="air-quality"></div>
             <div class="legend">
                 <div class="index">
@@ -76,12 +78,12 @@
                 </div>
                 <p class="prefix">µg/m³</p>
             </div>
-            
-        </div>
         </div>
     </main>
     <footer>
-        <p class="coder">Code by Mekintosz</p> 
-        <p class="powered">Powered by <a href="https://www.weatherapi.com/" title="Free Weather API">WeatherAPI.com</a></p>
+        <p class="coder">Code by Mekintosz</p>
+        <p class="powered">Powered by <a href="https://www.weatherapi.com/" title="Free Weather API">WeatherAPI.com</a>
+        </p>
 </body>
+
 </html>
