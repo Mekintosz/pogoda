@@ -1,12 +1,10 @@
 export default async function provideWeatherData(location) {
-  const apiCall = `http://api.weatherapi.com/v1/forecast.json?key=ad519565f97d430fb67163741240602&q=${location}&days=3&aqi=yes&alerts=yes`;
+  const apiCall = `https://api.weatherapi.com/v1/forecast.json?key=ad519565f97d430fb67163741240602&q=${location}&days=3&aqi=yes&alerts=yes`;
 
   try {
     const response = await fetch(apiCall, { mode: "cors" });
     if (!response.ok) throw new Error(`Location ${location} not found`);
-    console.log(response);
     const weatherData = convertData(await response.json());
-    console.log(weatherData);
     return weatherData;
   } catch (err) {
     alert(err);
@@ -15,8 +13,6 @@ export default async function provideWeatherData(location) {
 }
 
 function convertData(data) {
-  console.log(data);
-
   const {
     location: { name, country, lat, lon },
   } = data;

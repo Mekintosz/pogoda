@@ -233,7 +233,7 @@ main {
   flex-direction: column;
   align-items: center;
   padding: 0.6rem;
-  width: auto;
+  width: 9%;
   height: 140px;
 }
 
@@ -375,7 +375,7 @@ input:checked + .slider:before {
 footer {
   display: flex;
   align-items: center;
-  padding: 3.6rem;
+  padding: 3rem;
   margin-top: auto;
   justify-content: center;
   gap: 1.2rem;
