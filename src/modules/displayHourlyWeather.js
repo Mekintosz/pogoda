@@ -1,37 +1,9 @@
 import { createGraphicNode } from "./sideFunctions.js";
-import provideWeatherData from "./dataProvider.js";
-import { getUnits } from "./sideFunctions.js";
-
-const hourlyDisplayContainer = document.getElementById("hourly");
-// const prevBtn = document.getElementById("prev-day");
-// const nextBtn = document.getElementById("next-day");
-// prevBtn.addEventListener("click", () => calculateShortDay());
-// nextBtn.addEventListener("click", () => calculateShortDay2());
-
-// let firstHour = 0;
-// let lastHour = 6;
-// const { hourly } = provideWeatherData();
-// console.log(hourly);
-
-// function calculateShortDay() {
-//   if (firstHour === 0) return;
-//   firstHour -= 1;
-//   lastHour -= 1;
-//   hourlyDisplayContainer.innerHTML = "";
-//   displayHourlyWeather(hourly, getUnits());
-// }
-
-// function calculateShortDay2() {
-//   if (lastHour === 24) return;
-//   firstHour += 1;
-//   lastHour += 1;
-//   hourlyDisplayContainer.innerHTML = "";
-//   displayHourlyWeather(hourly, getUnits());
-// }
 
 export default function displayHourlyWeather(data, units) {
+  const hourlyDisplayContainer = document.getElementById("hourly");
   hourlyDisplayContainer.innerHTML = "";
-  // const shortDay = data.slice(firstHour, lastHour);
+
   data.forEach((element) => {
     const hourlyDisplay = document.createElement("div");
     hourlyDisplay.classList.add("by-hour");

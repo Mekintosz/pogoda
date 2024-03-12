@@ -47,4 +47,12 @@ function displayCurrent(data, units) {
       : `${Math.round(data.wind_mph)} m/h`;
 }
 
-export { displayCurrent, displayLocation, displayData };
+function displayAstro (data) {
+  const sunRise = document.getElementById("sunrise")
+  const sunSet = document.getElementById("sunset")
+  sunSet.innerText = `${data.sunset}`
+  sunRise.innerText = `${data.sunrise}`
+
+}
+
+export { displayCurrent, displayLocation, displayData, displayAstro };

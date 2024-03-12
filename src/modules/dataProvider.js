@@ -53,29 +53,35 @@ function convertData(data) {
   const { sunrise, sunset } = astro;
   astro = { sunrise, sunset };
 
-  const hourly = organizeHourlyWeather(data);
-
   function organizeHourlyWeather(data) {
-    let hourlyData = data.forecast.forecastday[0].hour;
+    let hourlyData1 = data.forecast.forecastday[0].hour;
+    let hourlyData2 = data.forecast.forecastday[1].hour;
+    let finalHourlyData = hourlyData1.concat(hourlyData2);
+
     let hourly = [];
-    for (let h = 0; h < hourlyData.length; h++) {
+    for (let h = 0; h < finalHourlyData.length; h++) {
       const {
         time,
         temp_c,
         temp_f,
         chance_of_rain,
         condition: { code },
-      } = hourlyData[h];
+      } = finalHourlyData[h];
 
       let hourlyNewTime = newTime(time);
-
-      hourly.push({
-        hourlyNewTime,
-        temp_c,
-        temp_f,
-        chance_of_rain,
-        condition: { code },
-      });
+      const timeNow = new Date();
+      const hourNow = timeNow.getHours();
+      let elementHour = parseInt(hourlyNewTime.slice(0, 2));
+      if (h > 23) elementHour += 24;
+      if (elementHour >= hourNow && hourly.length < 10) {
+        hourly.push({
+          hourlyNewTime,
+          temp_c,
+          temp_f,
+          chance_of_rain,
+          condition: { code },
+        });
+      } else if (elementHour >= hourNow && hourly.length >= 10) return hourly;
     }
 
     function newTime(time) {
@@ -86,8 +92,9 @@ function convertData(data) {
     return hourly;
   }
 
+  const hourly = organizeHourlyWeather(data);
+
   function organizeTwoDayWeather(data) {
-    
     const twoDayData = [];
     for (let d = 1; d < 3; d++) {
       let nextDayData = data.forecast.forecastday[d].day;
@@ -105,11 +112,11 @@ function convertData(data) {
         condition: { text, code },
       });
     }
-    
-    return twoDayData
+
+    return twoDayData;
   }
 
-  const twoDayData = organizeTwoDayWeather(data)
+  const twoDayData = organizeTwoDayWeather(data);
 
   return { location, currentWeather, airQuality, astro, hourly, twoDayData };
 }

@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/src/assets/favicon.svg">
     <title>Pogoda</title>
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../src/styles.css">
     <script src="./bundle.js" defer></script>
 </head>
 
@@ -30,60 +31,77 @@
         </div>
     </header>
     <main>
-        <div class="location-display">
-            <h1 class="location-name" id="location"></h1>
-            <h3 class="country" id="country"></h3>
-            <div class="coordinates">
-                <div class="latitude-label label">
-                    Latitude:
-                    <div class="latitude" id="latitude"></div>
+
+        <div class="main-current-container">
+            <div class="current-weather">
+                <div class="temp-container container">
+                    <div id="tempC" class="temp"></div>
+                    <div id="feelsLike" class="feels-like"></div>
+                    <div class="location-display" >
+                        <h1 class="location-name" id="location"></h1>
+                        <h3 class="country" id="country"></h3>
+                        <div class="coordinates">
+                            <div class="latitude-label label">
+                                Latitude:
+                                <div class="latitude" id="latitude"></div>
+                            </div>
+                            <div class="longitude-label label">
+                                Longitude:
+                                <div class="longitude" id="longitude"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="longitude-label label">
-                    Longitude:
-                    <div class="longitude" id="longitude"></div>
+                
+                    <div class="condition-container container">
+                        <div id="graphic" class="current-graphic"></div>
+                        <div id="condition" class="condition"></div>
+                    </div>
+                    <div class="wind-container container">
+                        <img class="wind-graphic" src="../src/assets/windsock.svg" alt="wind sock">
+                        <div id="wind" class="wind-blow"></div>
+                    </div>
+                    <div class="air-quality container">
+                        <div class="quality"></div>
+                        <div class="legend">
+                            <div class="index">
+                                <p class="green">Low</p>
+                                <p class="orange">Moderate</p>
+                                <p class="red">High</p>
+                            </div>
+                            <p class="prefix">µg/m³</p>
+                        </div>
+                    </div>
+                    <div class="astro-container container">
+                        <div class="sunset">
+                            <img src="../src/assets/sunset.svg" alt="sunset">
+                            <span id="sunset"></span>
+                        </div>
+                        <div class="sunrise">
+                            <img src="../src/assets/sunrise.svg" alt="sunset">
+                            <span id="sunrise"></span>
+                        </div>
+                    </div>
                 </div>
-            </div>
         </div>
-        <div class="current-weather">
-            <div class="condition-container">
-                <div id="graphic" class="current-graphic"></div>
-                <div id="condition" class="condition"></div>
+        <h3>Next 10 hours</h3>
+            <div class="hourly-container">
+                <!-- <button id="prev-day" class="left-btn">&#8701</button> -->
+                <div class="hourly-weather short-day" id="hourly"></div>
+                <!-- <button id="next-day" class="right-btn">&#8702</button> -->
             </div>
-            <div class="temp-container">
-                <div id="tempC" class="temp"></div>
-                <div id="feelsLike" class="feels-like"></div>
+            <h3>Next two days</h3>
+            <div class="two-day-weather-container" id="two_day">
             </div>
 
-            <div class="wind-container">
-                <img class="wind-graphic" src="../src/assets/windsock.svg" alt="wind sock">
-                <div id="wind" class="wind-blow"></div>
-            </div>
-        </div>
-        <div class="hourly-container">
-            <button id="prev-day" class="left-btn">&#8701</button>
-            <div class="hourly-weather short-day" id="hourly"></div>
-            <button id="next-day" class="right-btn">&#8702</button>
-        </div>
-        <h2>Next two days</h2>
-        <div class="two-day-weather-container" id="two_day">
-        </div>
-        
-        <div class="air-quality-container" >
-            <div class="air-quality"></div>
-            <div class="legend">
-                <div class="index">
-                    <p class="green">Low</p>
-                    <p class="orange">Moderate</p>
-                    <p class="red">High</p>
-                </div>
-                <p class="prefix">µg/m³</p>
-            </div>
-        </div>
+            
     </main>
     <footer>
-        <p class="coder">Code by Mekintosz</p>
+        <p class="coder">Code & design by Mekintosz</p>
+        <a href="https://github.com/Mekintosz/pogoda"><img  class="git-hub" src="../src/assets/github-mark.svg" alt="GitHub Logo"></a>
         <p class="powered">Powered by <a href="https://www.weatherapi.com/" title="Free Weather API">WeatherAPI.com</a>
         </p>
+        
 </body>
 
 </html>

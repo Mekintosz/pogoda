@@ -12,9 +12,9 @@ function getUnits() {
 }
 
 function applyIndexColor(i, element) {
-  if (i >= 0 && i < 36) element.style.backgroundColor = "#DFFFE2";
+  // if (i >= 0 && i < 36) element.style.backgroundColor = "#DFFFE2";
   if (i >= 36 && i < 54) element.style.backgroundColor = "#FFF2D9";
-  if (i >= 54) element.style.border = "3px solid #FFD9D9";
+  if (i >= 54) element.style.backgroundColor = "#FFD9D9";
 }
 
 function createGraphicNode(data) {
