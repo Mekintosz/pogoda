@@ -14,7 +14,7 @@ export default function displayNextTwoDay(data, units) {
       units === "c"
         ? `${Math.round(element.avgtemp_c)}°`
         : `${Math.round(element.avgtemp_f)}°`;
-    cor.innerText = `${element.daily_chance_of_rain}`;
+    cor.innerText = `${element.daily_chance_of_rain} %`;
     condition.innerText = `${element.condition.text}`;
     byDayDisplay.append(temp, graphicNode, condition, cor);
     container.appendChild(byDayDisplay);

@@ -16,7 +16,7 @@ export default function displayHourlyWeather(data, units) {
       units === "c"
         ? `${Math.round(element.temp_c)}°`
         : `${Math.round(element.temp_f)}°`;
-    cor.innerText = `${element.chance_of_rain}`;
+    cor.innerText = `${element.chance_of_rain} %`;
     hourlyDisplay.append(temp, graphicNode, cor, hour);
     hourlyDisplayContainer.appendChild(hourlyDisplay);
   });
