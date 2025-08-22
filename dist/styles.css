@@ -64,11 +64,13 @@ header {
 .controls {
   display: flex;
   place-items: center;
+  grid-area: slider;
 }
 
 .logo-group {
   display: flex;
   place-items: center;
+  grid-area: logo;
 }
 
 .logo-graphic {
@@ -93,13 +95,14 @@ header {
 .search-block {
   display: flex;
   align-items: center;
+  grid-area: search;
 }
 
 input {
   width: 275px;
   height: 2rem;
   padding: 0 1rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
   box-sizing: border-box;
   border: 1px solid rgba(48, 159, 172, 0.373);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -384,4 +387,51 @@ footer {
 
 .git-hub {
   height: 2rem;
+}
+
+@media (max-width: 1000px) {
+  .current-weather {
+    max-width: 900px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    gap: 1.6rem;
+  }
+
+  .hourly-weather {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .by-hour {
+    width: 81px;
+  }
+}
+
+@media (max-width: 620px) {
+  .current-weather {
+    max-width: 900px;
+    display: grid;
+    grid-template-columns: 1fr;
+    place-items: center;
+    gap: 1.6rem;
+  }
+
+  header {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+      "logo slider"
+      "search search";
+
+    justify-content: space-around;
+    height: auto;
+  }
+
+  input {
+    width: 100%;
+  }
 }
