@@ -29,7 +29,7 @@ A lightweight single‑page weather dashboard that fetches live data from Weathe
 ```text
 .
 ├── src/
-│   ├── assets/                 # Weather condition icons (source)
+│   ├── assets/                 # Weather condition icons (https://bas.dev/work/meteocons)
 │   ├── modules/
 │   │   ├── dataProvider.js     # Fetch + normalize data from WeatherAPI
 │   │   ├── displayHourlyWeather.js
@@ -130,6 +130,7 @@ This publishes the contents of `dist/` to the `gh-pages` branch. In your reposit
 ## Acknowledgements
 
 - Weather data provided by [WeatherAPI.com](https://www.weatherapi.com/)
+- Animated weather icons provided by [Meteocons](https://bas.dev/work/meteocons)
 
 ## License
 
